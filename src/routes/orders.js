@@ -4,7 +4,7 @@ const router = express.Router();
 const cors = require('cors');
 
 router.use(cors({
-    origin: 'http://192.168.3.105:3000'
+    origin: 'http://192.168.1.5:3000'
 }))
 
 

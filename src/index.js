@@ -23,7 +23,7 @@ app.use(express.json());
 app.use('/api', userRouters)
 app.use('/api', orderRouters)
 app.use(cors({
-    origin: 'http://192.168.3.105:3000'
+    origin: 'http://192.168.1.5:3000'
 }))
 
 app.listen(port,() => {

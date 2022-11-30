@@ -5,7 +5,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 
 router.use(cors({
-    origin: 'http://192.168.3.105:3000'
+    origin: 'http://192.168.1.5:3000'
 }))
 
 router.post('/users',(req,res) =>{
