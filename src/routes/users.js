@@ -5,7 +5,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 
 router.use(cors({
-    origin: 'http://192.168.3.105:3000'
+    origin: 'http://192.168.20.22:3000' //Poner IP de cada PC 
 }))
 
 router.post('/users',(req,res) =>{
