@@ -5,7 +5,7 @@ const cors = require('cors');
 var moment = require('moment');
 
 router.use(cors({
-    origin: 'http://192.168.3.105:3000'
+    origin: 'http://192.168.20.22:3000' //Poner IP de cada PC, esta sale cuando se corre el Front
 }))
 
 
@@ -15,7 +15,7 @@ router.get('/orders',(req,res) =>{
     .catch((error) => res.json({message:error}));
 })
 
-router.post('/orders',(req,res) =>{
+router.post('/orders/id',(req,res) =>{
     orderSchema.findById(req.body.id)
     .then((data) =>{
         res.json(data)
@@ -33,5 +33,12 @@ router.post('/orders/update',(req,res) =>{
     })
     .catch((error) => res.json({message:error}));;
 })
+router.post("/orders",(req,res) => {
+    const order = orderSchema(req.body);
+    order
+        .save()
+        .then((data) => res.json(data))
+        .catch((error) => res.json({message: error}));
+});
 
 module.exports = router;
