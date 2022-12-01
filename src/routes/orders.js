@@ -9,12 +9,6 @@ router.use(cors({
 }))
 
 
-router.get('/orders',(req,res) =>{
-    orderSchema.find()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({message:error}));
-})
-
 router.post('/orders/id',(req,res) =>{
     orderSchema.findById(req.body.id)
     .then((data) =>{
