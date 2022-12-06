@@ -3,9 +3,16 @@ const userSchema = require('../models/user.js');
 const router = express.Router();
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const bodyParser = require('body-parser');
+const config = require('../configs/config');
+
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 router.use(cors({
-    origin: 'http://192.168.20.22:3000' //Poner IP de cada PC 
+    origin: 'http://localhost:3000' //Poner IP de cada PC 
 }))
 
 router.post('/users',(req,res) =>{
@@ -29,20 +36,18 @@ router.post('/users/login',(req,res) =>{
         if(data.length === 0){
             res.json({message:'No hay ningún usuario registrado con el email dado.'})
         }else{
-            const passwordForm = bcrypt.hashSync(user.password, data[0].salt);
-            console.log(passwordForm);
-            console.log(data[0].password);
-
             bcrypt.compare(user.password, data[0].password, (err, data) => {
-                console.log(data);
-
+                const payload = {
+                    check:  true
+                };
+                const token = jwt.sign(payload, config.llave, { expiresIn: 1440});
                 if (err) {
                     return res.json({message:'Ocurrio un error.'})
                 }
                 else if (data) {
-                    return res.status(200).json({ login: "Ok" })
+                    return res.status(200).json({ mensaje: 'Autenticación correcta', token: token })
                 } else {
-                    return res.status(401).json({ message: "Invalid credencial" })
+                    return res.status(401).json({ mensaje: "Usuario o contraseña incorrectos" })
                 }
             })
         }
