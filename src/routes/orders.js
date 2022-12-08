@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 
 router.use(
   cors({
-    origin: "http://prueba2-production.up.railway.app", //Poner IP de cada PC, esta sale cuando se corre el Front
+    origin: "http://frontgrupo6-production.up.railway.app/", //Poner IP de cada PC, esta sale cuando se corre el Front
   })
 );
 

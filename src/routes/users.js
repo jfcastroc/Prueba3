@@ -13,7 +13,7 @@ router.use(bodyParser.json());
 
 router.use(
   cors({
-    origin: "http://prueba2-production.up.railway.app", //Poner IP de cada PC
+    origin: "http://frontgrupo6-production.up.railway.app/", //Poner IP de cada PC
   })
 );
 

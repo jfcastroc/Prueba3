@@ -33,7 +33,7 @@ app.use("/api", userRouters);
 app.use("/api", orderRouters);
 app.use(
   cors({
-    origin: "http://prueba2-production.up.railway.app",
+    origin: "http://frontgrupo6-production.up.railway.app/",
   })
 );
 
