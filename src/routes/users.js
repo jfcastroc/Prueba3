@@ -2,7 +2,7 @@ const express = require("express");
 const userSchema = require("../models/user.js");
 const router = express.Router();
 const cors = require("cors");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const bodyParser = require("body-parser");
@@ -39,7 +39,7 @@ router.post("/users/login", (req, res) => {
         message: "No hay ningún usuario registrado con el email dado.",
       });
     } else {
-      bcrypt.compare(user.password, data[0].password, (err, data) => {
+      bcryptjs.compare(user.password, data[0].password, (err, data) => {
         const payload = {
           check: true,
         };
